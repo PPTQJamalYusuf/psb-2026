@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman PSB 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #f0f4f8; /* Light blue/gray typical of forms */
+            --form-theme: #1a73e8; /* Google Blue */
+            --text-dark: #202124;
+            --text-gray: #5f6368;
+            --border-color: #dadce0;
+            --card-bg: #ffffff;
+            --response-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            padding-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 770px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Header Card */
+        .header-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            border-top: 10px solid var(--form-theme);
+            padding: 24px;
+            margin-top: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .header-card .logo {
+            width: auto;
+            height: 60px;
+            margin-bottom: 16px;
+            object-fit: contain;
+        }
+
+        .header-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .header-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+        
+        .header-total {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 24px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Question Card */
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            page-break-inside: avoid;
+        }
+
+        .question-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .response-count {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        /* Text Responses List */
+        .response-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        /* Scrollbar for response list */
+        .response-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        .response-list::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 4px;
+        }
+        .response-list::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        .response-list::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+
+        .response-item {
+            background: var(--response-bg);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-dark);
+            border: 1px solid transparent;
+        }
+
+        .response-item:hover {
+            background: #f1f3f4;
+        }
+
+        /* Chart container */
+        .chart-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-card">
+            <img src="assets/logo.png" alt="Logo PSB" class="logo" onerror="this.style.display='none'">
+            <h1 class="header-title">Laporan Rangkuman PSB 2026</h1>
+            <p class="header-desc">Dokumentasi data pendaftar Pusat Pendidikan Tahfidzul Qur'an Jamal Yusuf Al Haddad. Laporan ini menyerupai format rangkuman profesional layaknya Google Forms.</p>
+            <div class="header-total">32 tanggapan</div>
+        </div>
+
+        <!-- Nama Lengkap Card -->
+        <div class="question-card">
+            <div class="question-title">Nama Lengkap</div>
+            <div class="response-count">32 tanggapan</div>
+            <div class="response-list">
+                <div class="response-item">NAMA LENGKAP</div>
+                <div class="response-item">KAISYA RAHMATUL IZZA</div>
+                <div class="response-item">KHAYLA NAJMY ARDINI</div>
+                <div class="response-item">HILMI HAFSOH</div>
+                <div class="response-item">Ghaziyah Afifah Aqilah</div>
+                <div class="response-item">KEYSA ASSABIYA RAFIFA</div>
+                <div class="response-item">Aqilla Zahratun Nisa</div>
+                <div class="response-item">Vannesia Putri</div>
+                <div class="response-item">ULFATUJJADIDAH</div>
+                <div class="response-item">Qonita azzahra</div>
+                <div class="response-item">SASKIA ALYA RAMADHANI</div>
+                <div class="response-item">AFIFAH SIDQIA</div>
+                <div class="response-item">Aliyah Syafira</div>
+                <div class="response-item">MARISA AMRIN</div>
+                <div class="response-item">BALQIS SARI MUSTIKA</div>
+                <div class="response-item">Asmaul Husna Aryani</div>
+                <div class="response-item">Syaza auni prasetyo</div>
+                <div class="response-item">ZIAN RAMEYZA</div>
+                <div class="response-item">YUYUN ADYA GHRAINI</div>
+                <div class="response-item">BRILLIYAN RAMADHAN</div>
+                <div class="response-item">Marisa Septia Bella</div>
+                <div class="response-item">SHAZIA JASMINE AZ-ZAHWA</div>
+                <div class="response-item">SHELY ANDINI SUHENDAR</div>
+                <div class="response-item">SHELA FAHIRA SUHENDAR</div>
+                <div class="response-item">BENING NAJMA ISMAIL</div>
+                <div class="response-item">Aufa azalia</div>
+                <div class="response-item">SAFA INDRI YANI</div>
+                <div class="response-item">Najia azahwa</div>
+                <div class="response-item">ALYA ZULAINI</div>
+                <div class="response-item">PINKA AKHIRUNNISYAH</div>
+                <div class="response-item">khaisya Efendi putri</div>
+                <div class="response-item">Tatu Husna Nurul Hapidah</div>
+            </div>
+        </div>
+
+        <!-- Tempat Lahir Card -->
+        <div class="question-card">
+            <div class="question-title">Tempat Lahir</div>
+            <div class="response-count">32 tanggapan</div>
+            <div class="response-list">
+                <div class="response-item">Tempat Lahir</div>
+                <div class="response-item">Prabumulih</div>
+                <div class="response-item">Gunungkidul</div>
+                <div class="response-item">Metro</div>
+                <div class="response-item">Prabumulih</div>
+                <div class="response-item">Lampung Tengah</div>
+                <div class="response-item">Ds Sungai Jeruju</div>
+                <div class="response-item">Agung Jaya</div>
+                <div class="response-item">Mulyajaya</div>
+                <div class="response-item">Sungai Menang</div>
+                <div class="response-item">Teluk Gedung</div>
+                <div class="response-item">Sidang Bandar Anom</div>
+                <div class="response-item">Brabasan</div>
+                <div class="response-item">Tulang Bawang</div>
+                <div class="response-item">Tulang Bawang</div>
+                <div class="response-item">Kibang Tri Jaya</div>
+                <div class="response-item">Mukti Jaya</div>
+                <div class="response-item">Tulang Bawang</div>
+                <div class="response-item">Lubuk Seberuk</div>
+                <div class="response-item">Gedung Karya Jitu</div>
+                <div class="response-item">Teluk Gedung</div>
+                <div class="response-item">Oku Timur</div>
+                <div class="response-item">Bandar Lampung</div>
+                <div class="response-item">Bandar Lampung</div>
+                <div class="response-item">Bina Bumi</div>
+                <div class="response-item">Sungai Badak</div>
+                <div class="response-item">Tulang Bawang</div>
+                <div class="response-item">Tridharma</div>
+                <div class="response-item">Seputih Banyak</div>
+                <div class="response-item">Sungai Ceper</div>
+                <div class="response-item">Talang Batu</div>
+                <div class="response-item">Serang</div>
+            </div>
+        </div>
+
+        <!-- Alamat Lengkap Card -->
+        <div class="question-card">
+            <div class="question-title">Alamat Lengkap (Desa/Kec/Kab/Prov)</div>
+            <div class="response-count">32 tanggapan</div>
+            <div class="response-list">
+                <div class="response-item">Desa/Kelurahan/Kampung, Kecamatan, Kabupaten/Kota, Provinsi, Nama Ayah</div>
+                <div class="response-item">Manunggal Makmur, Rambang Niru,Muara Enim,, Sumatera Selatan, Dwi Istanto</div>
+                <div class="response-item">Simpang Mesuji, Simpang Pematang, Mesuji, Lampung, Ardi Mintono</div>
+                <div class="response-item">Unit 6 Kibang Budi Jaya, Lambu Kibang, Kabupaten Tulang Bawang Barat, Lampung, Muhammad</div>
+                <div class="response-item">Sidomulyo, Prabumulih Utara, Sumatra Selatan, Andriansyah Saputra</div>
+                <div class="response-item">Kibang Budi Jaya, Lambu Kibang, Lampung, Reza Kurniawan</div>
+                <div class="response-item">Plaju Ulu, Plaju, Palembang, Ali Topan</div>
+                <div class="response-item">Agung Jaya, Banjar Margo, Lampung, Tomy Heru Kuncoro</div>
+                <div class="response-item">Mulyajaya, Gunung Agung/Tulangbawang Barat, Lampung, Asmadi</div>
+                <div class="response-item">Sungai Menang, Sungai Menang, Oki, Sumatra Selatan, Ahmat Taufik Rifai</div>
+                <div class="response-item">Bumi Dipasena Abadi, Rawa Jitu ,Tulang Bawang, Lampung, Abbas</div>
+                <div class="response-item">Sidang Bandar Anom, Rawajitu Utara,Mesuji, Lampung, Agus Thoifur</div>
+                <div class="response-item">Brabasan, Tanjung Raya, Mesuji, Lampung, Edi Rusmanto</div>
+                <div class="response-item">Trimukti Jaya, Banjar Agung, Tulang Bawang, Lampung, Nana Rohaena</div>
+                <div class="response-item">Penawar Rejo, Banjar Margo, Lampung, Wakidi</div>
+                <div class="response-item">Agung Dalam, Banjar Margo Tulang Bawang, Lampung, Tatang Sutisna</div>
+                <div class="response-item">Tanjung Menang, Mesuji Timur, Mesuji,Lampung, Eko Prasetyo</div>
+                <div class="response-item">Warga Makmur Jaya, Banjar Agung. Tulang Bawang, Lampung, Handoko</div>
+                <div class="response-item">Lubuk Seberuk, Lempuing Jaya Kabupaten Oki, Sumatera Selatan, Dwi Saputra</div>
+                <div class="response-item">Gedung Karya Jitu, Rawa Jitu, Tulang Bawang, Lampung, Wahyudi</div>
+                <div class="response-item">–, Tulang Bawang, Lampung, Muhammad Yanto</div>
+                <div class="response-item">Sidodadi, Belitang, Ogan Komering Ulu Timur, Sumatera Selatan, Husin Abdul Mu'In</div>
+                <div class="response-item">Sukaraja, Teluk Betung, Lampung, Temon Suhendar</div>
+                <div class="response-item">Sukaraja, Teluk Betuk, Lampung, Temon Suhendar</div>
+                <div class="response-item">Bina Bumi, Meraksa Aji, Lampung, Cumain</div>
+                <div class="response-item">Sungai Badak, Mesuji, Lampung, Yelis Junaidi</div>
+                <div class="response-item">Indraloka Jaya, Way Kenanga, Tulang Bawang Barat, Lampung, Yatno</div>
+                <div class="response-item">Tridharma Wirajaya, Banjar Agung, Lampung, Budi Sugiarto</div>
+                <div class="response-item">Sidoharjo, Penawar Tama, Tulang Bawang, Lampung, Widodo</div>
+                <div class="response-item">Sungai Ceper, Sungai Menang, Ogan Komering Ilir, Sumatera Selatan, Peri</div>
+                <div class="response-item">Talang Batu, Mesuji Timur,/Mesuji, Lampung, Efendi</div>
+                <div class="response-item">Sukacai, Baros, Kabupaten Serang, Banten, Hapid</div>
+            </div>
+        </div>
+
+        <!-- Jenjang Pendidikan Card (Chart) -->
+        <div class="question-card">
+            <div class="question-title">Jenjang Pendidikan</div>
+            <div class="response-count">32 tanggapan</div>
+            <div class="chart-container">
+                <canvas id="jenjangChart"></canvas>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Data for Jenjang Pendidikan Chart
+        const jenjangLabels = ["JENJANG PENDIDIKANPilih salah satu !", "SMA (PAKET C)", "SMP (PAKET B)"];
+        const jenjangData = [1, 9, 22];
+        
+        const ctx = document.getElementById('jenjangChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: jenjangLabels,
+                datasets: [{
+                    data: jenjangData,
+                    backgroundColor: [
+                        '#4285F4', // Google Blue
+                        '#EA4335', // Google Red
+                        '#FBBC05', // Google Yellow
+                        '#34A853'  // Google Green
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                family: "'Roboto', sans-serif",
+                                size: 14
+                            },
+                            color: '#202124'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                const value = context.raw;
+                                const total = context.chart._metasets[context.datasetIndex].total;
+                                const percentage = Math.round((value / total) * 100) + '%';
+                                label += value + ' (' + percentage + ')';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
