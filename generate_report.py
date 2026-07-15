@@ -400,6 +400,7 @@ html_content = f"""
                 align-items: flex-start;
                 gap: 1rem;
                 padding: 1rem;
+                position: relative;
             }}
             .container {{
                 padding: 1rem;
@@ -452,8 +453,8 @@ html_content = f"""
 
     <div class="container">
         <div class="page-title">
-            <h2>Ringkasan Eksekutif Pendaftaran</h2>
-            <p>Ikhtisar data calon santri yang disajikan secara profesional untuk pengambilan keputusan.</p>
+            <h2>Bismillah</h2>
+            <p>Berikut laporan singkat PSB Tahun 2026</p>
         </div>
 
         <!-- Top Metrics -->
