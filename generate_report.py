@@ -26,6 +26,14 @@ for _, row in df.iterrows():
     jenjang_raw = str(row['JENJANG PENDIDIKAN\nPilih salah satu !']).strip()
     gol_darah = str(row['GOLONGAN DARAH']).strip()
     provinsi = str(row['PROVINSI']).strip()
+    
+    # Normalisasi nama provinsi
+    prov_lower = provinsi.lower()
+    if 'mesuji' in prov_lower and 'lampung' in prov_lower:
+        provinsi = 'Lampung'
+    elif prov_lower == 'sumatra selatan':
+        provinsi = 'Sumatera Selatan'
+        
     asal_sekolah = str(row['ASAL SEKOLAH SEBELUMNYA']).strip().title()
     
     if not nama and not jenjang_raw:

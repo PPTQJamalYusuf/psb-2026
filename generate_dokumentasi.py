@@ -24,7 +24,16 @@ for _, row in df.iterrows():
     if row['ALAMAT RUMAH']: alamat_parts.append(str(row['ALAMAT RUMAH']))
     if row['DESA/KELURAHAN/KAMPUNG']: alamat_parts.append(str(row['DESA/KELURAHAN/KAMPUNG']))
     if row['KECAMATAN, KABUPATEN/KOTA']: alamat_parts.append(str(row['KECAMATAN, KABUPATEN/KOTA']))
-    if row['PROVINSI']: alamat_parts.append(str(row['PROVINSI']))
+    
+    provinsi = str(row['PROVINSI']).strip()
+    if provinsi:
+        prov_lower = provinsi.lower()
+        if 'mesuji' in prov_lower and 'lampung' in prov_lower:
+            provinsi = 'Lampung'
+        elif prov_lower == 'sumatra selatan':
+            provinsi = 'Sumatera Selatan'
+        alamat_parts.append(provinsi)
+        
     alamat = ", ".join(alamat_parts)
     
     if not nama and not jenjang_raw:
