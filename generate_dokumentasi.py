@@ -192,12 +192,23 @@ html_content = f"""
             background: #f1f3f4;
         }}
 
-        /* Chart container */
         .chart-container {{
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
             position: relative;
+        }}
+
+        @media (max-width: 600px) {{
+            .header-card, .question-card {{
+                padding: 16px;
+            }}
+            .header-title {{
+                font-size: 24px;
+            }}
+            .header-total {{
+                font-size: 20px;
+            }}
         }}
     </style>
 </head>

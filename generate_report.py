@@ -394,6 +394,37 @@ html_content = f"""
             white-space: nowrap;
         }}
 
+        @media (max-width: 768px) {{
+            header {{
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
+            }}
+            .container {{
+                padding: 1rem;
+            }}
+            .brand img {{
+                height: 36px;
+            }}
+            .brand-text h1 {{
+                font-size: 1.1rem;
+            }}
+            .page-title h2 {{
+                font-size: 1.4rem;
+            }}
+            .metrics-grid {{
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }}
+            .table-header {{
+                padding: 1rem;
+            }}
+            th, td {{
+                padding: 0.75rem 1rem;
+            }}
+        }}
+
         footer {{
             text-align: center;
             color: var(--text-muted);
