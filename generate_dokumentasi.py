@@ -1,51 +1,43 @@
 import os
 import json
-from bs4 import BeautifulSoup
+import pandas as pd
 from collections import Counter
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(base_dir, "assets", "Formulir Pendaftaran TP 2025_2026 Pusat Pendidikan Tahfidzul Qur'an Jamal Yusuf Al Haddad (Jawaban)", "Form Responses 1.html")
-with open(file_path, 'r', encoding='utf-8') as f:
-    soup = BeautifulSoup(f, 'lxml')
+file_path = os.path.join(base_dir, "assets", "Formulir Pendaftaran TP 2025_2026 Pusat Pendidikan Tahfidzul Qur'an Jamal Yusuf Al Haddad (Jawaban).xlsx")
 
-table = soup.find('table')
-tbody = table.find('tbody')
-
-data = []
-for tr in tbody.find_all('tr'):
-    tds = tr.find_all('td')
-    if not tds:
-        continue
-    row = [td.get_text(strip=True) for td in tds]
-    if not any(row):
-        continue
-    data.append(row)
+# Load data from Excel
+df = pd.read_excel(file_path)
+df = df.fillna('')
 
 nama_list = []
 tempat_lahir_list = []
 alamat_list = []
 jenjang_list = []
 
-for row in data:
-    nama = row[3] if len(row) > 3 else ''
-    jenjang = row[4] if len(row) > 4 else ''
-    tempat_lahir = row[5] if len(row) > 5 else ''
+for _, row in df.iterrows():
+    nama = str(row['NAMA LENGKAP']).strip().title()
+    jenjang_raw = str(row['JENJANG PENDIDIKAN\nPilih salah satu !']).strip()
+    tempat_lahir = str(row['TEMPAT LAHIR']).strip()
     
-    # Construct full address if available
     alamat_parts = []
-    if len(row) > 14 and row[14]: alamat_parts.append(row[14])
-    if len(row) > 15 and row[15]: alamat_parts.append(row[15])
-    if len(row) > 16 and row[16]: alamat_parts.append(row[16])
-    if len(row) > 17 and row[17]: alamat_parts.append(row[17])
+    if row['ALAMAT RUMAH']: alamat_parts.append(str(row['ALAMAT RUMAH']))
+    if row['DESA/KELURAHAN/KAMPUNG']: alamat_parts.append(str(row['DESA/KELURAHAN/KAMPUNG']))
+    if row['KECAMATAN, KABUPATEN/KOTA']: alamat_parts.append(str(row['KECAMATAN, KABUPATEN/KOTA']))
+    if row['PROVINSI']: alamat_parts.append(str(row['PROVINSI']))
     alamat = ", ".join(alamat_parts)
     
-    if not nama and not jenjang:
+    if not nama and not jenjang_raw:
+        continue
+        
+    nama_lower = nama.lower()
+    if 'ghaziyah afifah' in nama_lower or 'aqilla zahratun' in nama_lower or 'marisa amrin' in nama_lower:
         continue
         
     nama_list.append(nama)
     tempat_lahir_list.append(tempat_lahir.title())
     alamat_list.append(alamat.title())
-    jenjang_list.append(jenjang.replace('SETARA ', ''))
+    jenjang_list.append(jenjang_raw.replace('SETARA ', ''))
 
 total_responses = len(nama_list)
 jenjang_counts = Counter(jenjang_list)
@@ -63,7 +55,7 @@ html_content = f"""
     <title>Rangkuman PSB 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {{
@@ -85,7 +77,7 @@ html_content = f"""
         body {{
             background-color: var(--bg-color);
             color: var(--text-dark);
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.5;
             padding-bottom: 4rem;
         }}
@@ -116,9 +108,9 @@ html_content = f"""
         }}
 
         .header-title {{
-            font-family: 'Google Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 32px;
-            font-weight: 400;
+            font-weight: 700;
             margin-bottom: 12px;
             color: var(--text-dark);
         }}
@@ -129,7 +121,7 @@ html_content = f"""
         }}
         
         .header-total {{
-            font-family: 'Google Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 24px;
             margin-top: 16px;
             padding-top: 16px;
@@ -148,7 +140,7 @@ html_content = f"""
         }}
 
         .question-title {{
-            font-family: 'Google Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 4px;
@@ -303,7 +295,7 @@ html_content += f"""            </div>
                         position: 'right',
                         labels: {{
                             font: {{
-                                family: "'Roboto', sans-serif",
+                                family: "'Poppins', sans-serif",
                                 size: 14
                             }},
                             color: '#202124'

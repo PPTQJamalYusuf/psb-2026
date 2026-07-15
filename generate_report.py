@@ -1,60 +1,67 @@
 import os
 import json
-from bs4 import BeautifulSoup
+import pandas as pd
 from collections import Counter
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(base_dir, "assets", "Formulir Pendaftaran TP 2025_2026 Pusat Pendidikan Tahfidzul Qur'an Jamal Yusuf Al Haddad (Jawaban)", "Form Responses 1.html")
-with open(file_path, 'r', encoding='utf-8') as f:
-    soup = BeautifulSoup(f, 'lxml')
+file_path = os.path.join(base_dir, "assets", "Formulir Pendaftaran TP 2025_2026 Pusat Pendidikan Tahfidzul Qur'an Jamal Yusuf Al Haddad (Jawaban).xlsx")
 
-table = soup.find('table')
-tbody = table.find('tbody')
+# Load data from Excel
+df = pd.read_excel(file_path)
 
-data = []
-for tr in tbody.find_all('tr'):
-    tds = tr.find_all('td')
-    if not tds:
-        continue
-    row = [td.get_text(strip=True) for td in tds]
-    if not any(row):
-        continue
-    data.append(row)
+# Handle NaNs
+df = df.fillna('')
 
 jenjang_counter = Counter()
 provinsi_counter = Counter()
 gol_darah_counter = Counter()
 
 registrants = []
-for row in data:
-    # 0: Timestamp, 3: Nama, 4: Jenjang, 7: Gol Darah, 17: Provinsi
-    waktu = row[0] if len(row) > 0 else ''
-    nama = row[3] if len(row) > 3 else ''
-    jenjang = row[4] if len(row) > 4 else ''
-    gol_darah = row[7] if len(row) > 7 else ''
-    provinsi = row[17] if len(row) > 17 else ''
+
+for _, row in df.iterrows():
+    waktu = str(row['Timestamp'])
+    if waktu.endswith('00:00:00'): waktu = waktu.replace(' 00:00:00', '')
     
-    if not nama and not jenjang:
+    nama = str(row['NAMA LENGKAP']).strip().title()
+    jenjang_raw = str(row['JENJANG PENDIDIKAN\nPilih salah satu !']).strip()
+    gol_darah = str(row['GOLONGAN DARAH']).strip()
+    provinsi = str(row['PROVINSI']).strip()
+    asal_sekolah = str(row['ASAL SEKOLAH SEBELUMNYA']).strip().title()
+    
+    if not nama and not jenjang_raw:
         continue
         
-    jenjang_clean = jenjang.replace('SETARA ', '')
-    jenjang_counter[jenjang_clean] += 1
+    jenjang_clean = jenjang_raw.replace('SETARA ', '')
     
-    if provinsi:
-        provinsi_counter[provinsi.title()] += 1
+    status = "Aktif"
+    nama_lower = nama.lower()
+    if 'ghaziyah afifah' in nama_lower or 'aqilla zahratun' in nama_lower or 'marisa amrin' in nama_lower:
+        status = "Mengundurkan Diri"
         
-    if gol_darah:
-        gol_darah_counter[gol_darah] += 1
+    if status == "Aktif":
+        jenjang_counter[jenjang_clean] += 1
+        
+        if provinsi:
+            provinsi_counter[provinsi.title()] += 1
+            
+        if gol_darah:
+            gol_darah_counter[gol_darah] += 1
+    
+    # Format time for display (just date part if it's too long)
+    if ' ' in waktu:
+        waktu = waktu.split(' ')[0]
     
     registrants.append({
         'waktu': waktu,
         'nama': nama,
         'jenjang': jenjang_clean,
         'provinsi': provinsi.title(),
-        'gol_darah': gol_darah
+        'gol_darah': gol_darah,
+        'asal_sekolah': asal_sekolah,
+        'status': status
     })
 
-total_pendaftar = len(registrants)
+total_pendaftar = sum(1 for r in registrants if r['status'] == 'Aktif')
 paket_b = jenjang_counter.get('SMP (PAKET B)', 0)
 paket_c = jenjang_counter.get('SMA (PAKET C)', 0)
 top_provinsi = provinsi_counter.most_common(1)[0][0] if provinsi_counter else "-"
@@ -76,7 +83,7 @@ html_content = f"""
     <title>Dashboard Ringkasan Eksekutif PSB 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -98,7 +105,7 @@ html_content = f"""
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }}
 
         body {{
@@ -372,6 +379,8 @@ html_content = f"""
             border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
         }}
         
         .badge-sma {{
@@ -381,6 +390,8 @@ html_content = f"""
             border-radius: 9999px;
             font-size: 0.75rem;
             font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
         }}
 
         footer {{
@@ -480,10 +491,11 @@ html_content = f"""
                     <thead>
                         <tr>
                             <th width="5%">No.</th>
-                            <th width="20%">Waktu Registrasi</th>
-                            <th width="35%">Nama Calon Santri</th>
-                            <th width="15%">Gol. Darah</th>
-                            <th width="10%">Pilihan Jenjang</th>
+                            <th width="15%">Waktu Registrasi</th>
+                            <th width="25%">Nama Calon Santri</th>
+                            <th width="20%">Asal Sekolah</th>
+                            <th width="10%">Gol. Darah</th>
+                            <th width="10%">Jenjang</th>
                             <th width="15%">Provinsi Asal</th>
                         </tr>
                     </thead>
@@ -492,11 +504,17 @@ html_content = f"""
 
 for i, reg in enumerate(registrants, 1):
     jenjang_badge_class = "badge-sma" if "SMA" in reg['jenjang'] else "badge-smp"
+    
+    # Styling for withdrawn
+    row_style = "opacity: 0.6; background-color: #f8fafc;" if reg['status'] == 'Mengundurkan Diri' else ""
+    nama_display = f"<del>{reg['nama']}</del> <span style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span>" if reg['status'] == 'Mengundurkan Diri' else reg['nama']
+    
     html_content += f"""
-                        <tr>
+                        <tr style="{row_style}">
                             <td style="color: var(--text-muted); font-weight: 500;">{i}</td>
                             <td class="cell-time">{reg['waktu']}</td>
-                            <td class="cell-name">{reg['nama']}</td>
+                            <td class="cell-name">{nama_display}</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">{reg['asal_sekolah']}</td>
                             <td>{reg['gol_darah'] if reg['gol_darah'] else '-'}</td>
                             <td><span class="{jenjang_badge_class}">{reg['jenjang']}</span></td>
                             <td>{reg['provinsi']}</td>
@@ -517,7 +535,7 @@ html_content += f"""
 
     <script>
         // Set defaults for Chart.js
-        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.font.family = "'Poppins', sans-serif";
         Chart.defaults.color = "#64748b";
 
         // Jenjang Chart (Doughnut)
