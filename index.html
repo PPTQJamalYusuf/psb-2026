@@ -1,28 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Ringkasan Eksekutif PSB 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #0f172a;      /* Slate 900 */
-            --primary-light: #334155; /* Slate 700 */
-            --accent: #2563eb;       /* Blue 600 */
-            --accent-light: #eff6ff; /* Blue 50 */
-            --success: #16a34a;      /* Green 600 */
-            --success-light: #f0fdf4;/* Green 50 */
-            --bg-body: #f8fafc;      /* Slate 50 */
+            --primary: #0f172a;
+            /* Slate 900 */
+            --primary-light: #334155;
+            /* Slate 700 */
+            --accent: #2563eb;
+            /* Blue 600 */
+            --accent-light: #eff6ff;
+            /* Blue 50 */
+            --success: #16a34a;
+            /* Green 600 */
+            --success-light: #f0fdf4;
+            /* Green 50 */
+            --bg-body: #f8fafc;
+            /* Slate 50 */
             --card-bg: #ffffff;
-            --text-main: #1e293b;    /* Slate 800 */
-            --text-muted: #64748b;   /* Slate 500 */
-            --border: #e2e8f0;       /* Slate 200 */
+            --text-main: #1e293b;
+            /* Slate 800 */
+            --text-muted: #64748b;
+            /* Slate 500 */
+            --border: #e2e8f0;
+            /* Slate 200 */
         }
 
         * {
@@ -49,7 +60,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .brand {
@@ -81,7 +92,7 @@
             align-items: center;
             gap: 1rem;
         }
-        
+
         .badge-academic-year {
             background: var(--accent-light);
             color: var(--accent);
@@ -103,8 +114,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .page-title {
@@ -116,7 +134,7 @@
             font-weight: 700;
             color: var(--primary);
         }
-        
+
         .page-title p {
             color: var(--text-muted);
             margin-top: 0.25rem;
@@ -135,7 +153,7 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
@@ -144,7 +162,7 @@
 
         .metric-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
 
         .metric-info h3 {
@@ -162,7 +180,7 @@
             color: var(--primary);
             line-height: 1;
         }
-        
+
         .metric-info .sub-text {
             font-size: 0.85rem;
             color: var(--success);
@@ -180,9 +198,20 @@
             font-size: 1.5rem;
         }
 
-        .icon-blue { background: var(--accent-light); color: var(--accent); }
-        .icon-green { background: var(--success-light); color: var(--success); }
-        .icon-slate { background: #f1f5f9; color: var(--text-muted); }
+        .icon-blue {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .icon-green {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .icon-slate {
+            background: #f1f5f9;
+            color: var(--text-muted);
+        }
 
         /* Charts Section */
         .charts-grid {
@@ -193,7 +222,9 @@
         }
 
         @media (max-width: 900px) {
-            .charts-grid { grid-template-columns: 1fr; }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .chart-card {
@@ -201,7 +232,7 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
         }
 
         .chart-card h3 {
@@ -225,7 +256,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
             overflow: hidden;
             margin-bottom: 3rem;
         }
@@ -257,7 +288,8 @@
             text-align: left;
         }
 
-        th, td {
+        th,
+        td {
             padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border);
         }
@@ -290,7 +322,7 @@
             font-weight: 600;
             color: var(--primary);
         }
-        
+
         .cell-time {
             color: var(--text-muted);
             font-size: 0.85rem;
@@ -306,7 +338,7 @@
             display: inline-block;
             white-space: nowrap;
         }
-        
+
         .badge-sma {
             background-color: #fce7f3;
             color: #be185d;
@@ -325,26 +357,34 @@
                 gap: 1rem;
                 padding: 1rem;
             }
+
             .container {
                 padding: 1rem;
             }
+
             .brand img {
                 height: 36px;
             }
+
             .brand-text h1 {
                 font-size: 1.1rem;
             }
+
             .page-title h2 {
                 font-size: 1.4rem;
             }
+
             .metrics-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+
             .table-header {
                 padding: 1rem;
             }
-            th, td {
+
+            th,
+            td {
                 padding: 0.75rem 1rem;
             }
         }
@@ -357,6 +397,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -376,8 +417,8 @@
 
     <div class="container">
         <div class="page-title">
-            <h2>Ringkasan Eksekutif Pendaftaran</h2>
-            <p>Ikhtisar data calon santri yang disajikan secara profesional untuk pengambilan keputusan.</p>
+            <h2>Bismillah</h2>
+                <p>Berikut laporan singkat PSB Tahun 2026</p>
         </div>
 
         <!-- Top Metrics -->
@@ -390,7 +431,7 @@
                 </div>
                 <div class="metric-icon icon-blue"><i class="fa-solid fa-users"></i></div>
             </div>
-            
+
             <div class="metric-card">
                 <div class="metric-info">
                     <h3>Pendaftar Jenjang SMP</h3>
@@ -399,7 +440,7 @@
                 </div>
                 <div class="metric-icon icon-slate"><i class="fa-solid fa-book-open-reader"></i></div>
             </div>
-            
+
             <div class="metric-card">
                 <div class="metric-info">
                     <h3>Pendaftar Jenjang SMA</h3>
@@ -408,7 +449,7 @@
                 </div>
                 <div class="metric-icon icon-slate"><i class="fa-solid fa-graduation-cap"></i></div>
             </div>
-            
+
             <div class="metric-card">
                 <div class="metric-info">
                     <h3>Provinsi Dominan</h3>
@@ -422,14 +463,16 @@
         <!-- Charts Row -->
         <div class="charts-grid">
             <div class="chart-card">
-                <h3><i class="fa-solid fa-chart-pie" style="color: var(--accent);"></i> Komposisi Jenjang Pendidikan</h3>
+                <h3><i class="fa-solid fa-chart-pie" style="color: var(--accent);"></i> Komposisi Jenjang Pendidikan
+                </h3>
                 <div class="canvas-container">
                     <canvas id="jenjangChart"></canvas>
                 </div>
             </div>
-            
+
             <div class="chart-card">
-                <h3><i class="fa-solid fa-chart-bar" style="color: var(--accent);"></i> Sebaran 5 Provinsi Asal Terbanyak</h3>
+                <h3><i class="fa-solid fa-chart-bar" style="color: var(--accent);"></i> Sebaran 5 Provinsi Asal
+                    Terbanyak</h3>
                 <div class="canvas-container">
                     <canvas id="provinsiChart"></canvas>
                 </div>
@@ -439,7 +482,8 @@
         <!-- Data Table -->
         <div class="table-card">
             <div class="table-header">
-                <h3><i class="fa-solid fa-table-list" style="color: var(--accent);"></i> Rekapitulasi Rinci Data Calon Santri Baru</h3>
+                <h3><i class="fa-solid fa-table-list" style="color: var(--accent);"></i> Rekapitulasi Rinci Data Calon
+                    Santri Baru</h3>
             </div>
             <div class="table-container">
                 <table>
@@ -460,7 +504,8 @@
                             <td style="color: var(--text-muted); font-weight: 500;">1</td>
                             <td class="cell-time">2025-10-16</td>
                             <td class="cell-name">Kaisya Rahmatul Izza</td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Pondok Pesantren Darussalam Tanjung Telang</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Pondok Pesantren Darussalam
+                                Tanjung Telang</td>
                             <td>O</td>
                             <td><span class="badge-sma">SMA (PAKET C)</span></td>
                             <td>Sumatera Selatan</td>
@@ -489,8 +534,11 @@
                         <tr style="opacity: 0.6; background-color: #f8fafc;">
                             <td style="color: var(--text-muted); font-weight: 500;">4</td>
                             <td class="cell-time">2025-10-30</td>
-                            <td class="cell-name"><del>Ghaziyah Afifah Aqilah</del> <span style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span></td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Ponpes Darus Salam Tanjung Telang</td>
+                            <td class="cell-name"><del>Ghaziyah Afifah Aqilah</del> <span
+                                    style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span>
+                            </td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Ponpes Darus Salam Tanjung Telang
+                            </td>
                             <td>O</td>
                             <td><span class="badge-sma">SMA (PAKET C)</span></td>
                             <td>Sumatra Selatan</td>
@@ -509,8 +557,11 @@
                         <tr style="opacity: 0.6; background-color: #f8fafc;">
                             <td style="color: var(--text-muted); font-weight: 500;">6</td>
                             <td class="cell-time">2025-11-03</td>
-                            <td class="cell-name"><del>Aqilla Zahratun Nisa</del> <span style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span></td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Ponpes Mutiara Sunnah Palembang</td>
+                            <td class="cell-name"><del>Aqilla Zahratun Nisa</del> <span
+                                    style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span>
+                            </td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Ponpes Mutiara Sunnah Palembang
+                            </td>
                             <td>AB</td>
                             <td><span class="badge-sma">SMA (PAKET C)</span></td>
                             <td>Palembang</td>
@@ -530,7 +581,7 @@
                             <td style="color: var(--text-muted); font-weight: 500;">8</td>
                             <td class="cell-time">2025-12-07</td>
                             <td class="cell-name">Ulfatujjadidah</td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Sdn 9  Gunung Agung</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Sdn 9 Gunung Agung</td>
                             <td>B</td>
                             <td><span class="badge-smp">SMP (PAKET B)</span></td>
                             <td>Lampung</td>
@@ -579,7 +630,9 @@
                         <tr style="opacity: 0.6; background-color: #f8fafc;">
                             <td style="color: var(--text-muted); font-weight: 500;">13</td>
                             <td class="cell-time">2026-02-01</td>
-                            <td class="cell-name"><del>Marisa Amrin</del> <span style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span></td>
+                            <td class="cell-name"><del>Marisa Amrin</del> <span
+                                    style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span>
+                            </td>
                             <td style="font-size: 0.85rem; color: var(--text-muted);">Sdn 1 Moris Jaya</td>
                             <td>B</td>
                             <td><span class="badge-smp">SMP (PAKET B)</span></td>
@@ -640,7 +693,7 @@
                             <td style="color: var(--text-muted); font-weight: 500;">19</td>
                             <td class="cell-time">2026-03-08</td>
                             <td class="cell-name">Brilliyan Ramadhan</td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Smp It Nurul Ilmi  Rawa Jitu</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Smp It Nurul Ilmi Rawa Jitu</td>
                             <td>AB</td>
                             <td><span class="badge-sma">SMA (PAKET C)</span></td>
                             <td>Lampung</td>
@@ -680,7 +733,7 @@
                             <td style="color: var(--text-muted); font-weight: 500;">23</td>
                             <td class="cell-time">2026-05-06</td>
                             <td class="cell-name">Shela Fahira Suhendar</td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Sd 5  Simpang Pematang</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Sd 5 Simpang Pematang</td>
                             <td>B</td>
                             <td><span class="badge-smp">SMP (PAKET B)</span></td>
                             <td>Lampung</td>
@@ -720,7 +773,8 @@
                             <td style="color: var(--text-muted); font-weight: 500;">27</td>
                             <td class="cell-time">2026-05-22</td>
                             <td class="cell-name">Najia Azahwa</td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Sd Negeri 1 Tridharma Wirajaya</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Sd Negeri 1 Tridharma Wirajaya
+                            </td>
                             <td>A</td>
                             <td><span class="badge-smp">SMP (PAKET B)</span></td>
                             <td>Lampung</td>
@@ -750,7 +804,8 @@
                             <td style="color: var(--text-muted); font-weight: 500;">30</td>
                             <td class="cell-time">2026-06-14</td>
                             <td class="cell-name">Khaisya Efendi Putri</td>
-                            <td style="font-size: 0.85rem; color: var(--text-muted);">Yayasan Cahaya Islami Rawajitu</td>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">Yayasan Cahaya Islami Rawajitu
+                            </td>
                             <td>B</td>
                             <td><span class="badge-sma">SMA (PAKET C)</span></td>
                             <td>Lampung</td>
@@ -770,11 +825,12 @@
                 </table>
             </div>
         </div>
-        
+
     </div>
 
     <footer>
-        &copy; 2026 Hak Cipta Panitia PSB TP 2025/2026 &middot; Dibuat secara otomatis untuk kebutuhan Ringkasan Eksekutif.
+        &copy; 2026 Hak Cipta Panitia PSB TP 2025/2026 &middot; Dibuat secara otomatis untuk kebutuhan Ringkasan
+        Eksekutif.
     </footer>
 
     <script>
@@ -841,4 +897,5 @@
         });
     </script>
 </body>
+
 </html>
