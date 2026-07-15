@@ -37,7 +37,7 @@ for _, row in df.iterrows():
     nama_list.append(nama)
     tempat_lahir_list.append(tempat_lahir.title())
     alamat_list.append(alamat.title())
-    jenjang_list.append(jenjang_raw.replace('SETARA ', ''))
+    jenjang_list.append(jenjang_raw.replace('SETARA ', '').replace(' (PAKET B)', '').replace(' (PAKET C)', ''))
 
 total_responses = len(nama_list)
 jenjang_counts = Counter(jenjang_list)

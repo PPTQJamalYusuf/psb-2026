@@ -31,7 +31,7 @@ for _, row in df.iterrows():
     if not nama and not jenjang_raw:
         continue
         
-    jenjang_clean = jenjang_raw.replace('SETARA ', '')
+    jenjang_clean = jenjang_raw.replace('SETARA ', '').replace(' (PAKET B)', '').replace(' (PAKET C)', '')
     
     status = "Aktif"
     nama_lower = nama.lower()
@@ -62,8 +62,8 @@ for _, row in df.iterrows():
     })
 
 total_pendaftar = sum(1 for r in registrants if r['status'] == 'Aktif')
-paket_b = jenjang_counter.get('SMP (PAKET B)', 0)
-paket_c = jenjang_counter.get('SMA (PAKET C)', 0)
+paket_b = jenjang_counter.get('SMP', 0)
+paket_c = jenjang_counter.get('SMA', 0)
 top_provinsi = provinsi_counter.most_common(1)[0][0] if provinsi_counter else "-"
 
 # For charts
@@ -472,7 +472,6 @@ html_content = f"""
                 <div class="metric-info">
                     <h3>Pendaftar Jenjang SMP</h3>
                     <div class="value">{paket_b}</div>
-                    <div class="sub-text" style="color: var(--text-muted);">Paket B</div>
                 </div>
                 <div class="metric-icon icon-slate"><i class="fa-solid fa-book-open-reader"></i></div>
             </div>
@@ -481,7 +480,6 @@ html_content = f"""
                 <div class="metric-info">
                     <h3>Pendaftar Jenjang SMA</h3>
                     <div class="value">{paket_c}</div>
-                    <div class="sub-text" style="color: var(--text-muted);">Paket C</div>
                 </div>
                 <div class="metric-icon icon-slate"><i class="fa-solid fa-graduation-cap"></i></div>
             </div>
