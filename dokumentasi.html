@@ -172,15 +172,14 @@
             <img src="assets/logo.png" alt="Logo PSB" class="logo" onerror="this.style.display='none'">
             <h1 class="header-title">Laporan Rangkuman PSB 2026</h1>
             <p class="header-desc">Dokumentasi data pendaftar Pusat Pendidikan Tahfidzul Qur'an Jamal Yusuf Al Haddad. Laporan ini menyerupai format rangkuman profesional layaknya Google Forms.</p>
-            <div class="header-total">28 tanggapan</div>
+            <div class="header-total">26 tanggapan</div>
         </div>
 
         <!-- Nama Lengkap Card -->
         <div class="question-card">
             <div class="question-title">Nama Lengkap</div>
-            <div class="response-count">28 tanggapan</div>
+            <div class="response-count">26 tanggapan</div>
             <div class="response-list">
-                <div class="response-item">Kaisya Rahmatul Izza</div>
                 <div class="response-item">Khayla Najmy Ardini</div>
                 <div class="response-item">Hilmi Hafsoh</div>
                 <div class="response-item">Keysa Assabiya Rafifa</div>
@@ -205,7 +204,6 @@
                 <div class="response-item">Safa Indri Yani</div>
                 <div class="response-item">Najia Azahwa</div>
                 <div class="response-item">Alya Zulaini</div>
-                <div class="response-item">Pinka Akhirunnisyah</div>
                 <div class="response-item">Khaisya Efendi Putri</div>
                 <div class="response-item">Tatu Husna Nurul Hapidah</div>
             </div>
@@ -214,9 +212,8 @@
         <!-- Tempat Lahir Card -->
         <div class="question-card">
             <div class="question-title">Tempat Lahir</div>
-            <div class="response-count">28 tanggapan</div>
+            <div class="response-count">26 tanggapan</div>
             <div class="response-list">
-                <div class="response-item">Prabumulih</div>
                 <div class="response-item">Gunungkidul</div>
                 <div class="response-item">Metro</div>
                 <div class="response-item">Lampung Tengah</div>
@@ -241,7 +238,6 @@
                 <div class="response-item">Tulang Bawang</div>
                 <div class="response-item">Tridharma</div>
                 <div class="response-item">Seputih Banyak</div>
-                <div class="response-item">Sungai Ceper</div>
                 <div class="response-item">Talang Batu</div>
                 <div class="response-item">Serang</div>
             </div>
@@ -250,9 +246,8 @@
         <!-- Alamat Lengkap Card -->
         <div class="question-card">
             <div class="question-title">Alamat Lengkap (Desa/Kec/Kab/Prov)</div>
-            <div class="response-count">28 tanggapan</div>
+            <div class="response-count">26 tanggapan</div>
             <div class="response-list">
-                <div class="response-item">Dusun 2 Manunggal Makmur , Manunggal Makmur , Rambang Niru,Muara Enim,, Sumatera Selatan</div>
                 <div class="response-item">Jalan Kesehatan, Simpang Mesuji Rt:01 Rw:05, Simpang Mesuji, Simpang Pematang, Mesuji, Lampung</div>
                 <div class="response-item">Rk 4, Unit 6 Kibang Budi Jaya , Lambu Kibang, Kabupaten Tulang Bawang Barat, Lampung</div>
                 <div class="response-item">Rk 4,Rt 1, Kibang Budi Jaya, Lambu Kibang, Lampung</div>
@@ -277,7 +272,6 @@
                 <div class="response-item">Indraloka Jaya, Indraloka Jaya, Way Kenanga, Tulang Bawang Barat, Lampung</div>
                 <div class="response-item">Kampung Tridharma Wirajaya , Tridharma Wirajaya , Banjar Agung , Lampung</div>
                 <div class="response-item">Jl. P. Diponegoro, Sidoharjo, Penawar Tama, Tulang Bawang, Lampung</div>
-                <div class="response-item">Sungai Ceper, Sungai Ceper, Sungai Menang, Ogan Komering Ilir, Sumatera Selatan</div>
                 <div class="response-item">Talang Batu, Talang Batu, Mesuji Timur,/Mesuji , Lampung</div>
                 <div class="response-item">Kp. Kadu Cokrom, Rt/Rw 005/002,Desa Sukacai Kec. Baros , Kab. Serang, , Sukacai, Baros, Kabupaten Serang , Banten</div>
             </div>
@@ -286,7 +280,7 @@
         <!-- Jenjang Pendidikan Card (Chart) -->
         <div class="question-card">
             <div class="question-title">Jenjang Pendidikan</div>
-            <div class="response-count">28 tanggapan</div>
+            <div class="response-count">26 tanggapan</div>
             <div class="chart-container">
                 <canvas id="jenjangChart"></canvas>
             </div>
@@ -296,8 +290,8 @@
 
     <script>
         // Data for Jenjang Pendidikan Chart
-        const jenjangLabels = ["SMA", "SMP"];
-        const jenjangData = [7, 21];
+        const jenjangLabels = ["SMP", "SMA"];
+        const jenjangData = [21, 5];
         
         const ctx = document.getElementById('jenjangChart').getContext('2d');
         new Chart(ctx, {

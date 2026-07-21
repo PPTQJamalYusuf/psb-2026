@@ -43,7 +43,7 @@ for _, row in df.iterrows():
     
     status = "Aktif"
     nama_lower = nama.lower()
-    if 'ghaziyah afifah' in nama_lower or 'aqilla zahratun' in nama_lower or 'marisa amrin' in nama_lower:
+    if 'ghaziyah afifah' in nama_lower or 'aqilla zahratun' in nama_lower or 'marisa amrin' in nama_lower or 'pinka akhirunnisyah' in nama_lower or 'kaysya rahmatul' in nama_lower or 'kaisya rahmatul' in nama_lower:
         status = "Mengundurkan Diri"
         
     if status == "Aktif":

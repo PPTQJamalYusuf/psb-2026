@@ -386,7 +386,7 @@
             <div class="metric-card">
                 <div class="metric-info">
                     <h3>Total Pendaftar Masuk</h3>
-                    <div class="value">28</div>
+                    <div class="value">26</div>
                     <div class="sub-text"><i class="fa-solid fa-arrow-trend-up"></i> Calon Santri Aktif</div>
                 </div>
                 <div class="metric-icon icon-blue"><i class="fa-solid fa-users"></i></div>
@@ -403,7 +403,7 @@
             <div class="metric-card">
                 <div class="metric-info">
                     <h3>Pendaftar Jenjang SMA</h3>
-                    <div class="value">7</div>
+                    <div class="value">5</div>
                 </div>
                 <div class="metric-icon icon-slate"><i class="fa-solid fa-graduation-cap"></i></div>
             </div>
@@ -455,10 +455,10 @@
                     </thead>
                     <tbody>
 
-                        <tr style="">
+                        <tr style="opacity: 0.6; background-color: #f8fafc;">
                             <td style="color: var(--text-muted); font-weight: 500;">1</td>
                             <td class="cell-time">2025-10-16</td>
-                            <td class="cell-name">Kaisya Rahmatul Izza</td>
+                            <td class="cell-name"><del>Kaisya Rahmatul Izza</del> <span style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span></td>
                             <td style="font-size: 0.85rem; color: var(--text-muted);">Pondok Pesantren Darussalam Tanjung Telang</td>
                             <td>O</td>
                             <td><span class="badge-sma">SMA</span></td>
@@ -735,10 +735,10 @@
                             <td>Lampung</td>
                         </tr>
 
-                        <tr style="">
+                        <tr style="opacity: 0.6; background-color: #f8fafc;">
                             <td style="color: var(--text-muted); font-weight: 500;">29</td>
                             <td class="cell-time">2026-05-26</td>
-                            <td class="cell-name">Pinka Akhirunnisyah</td>
+                            <td class="cell-name"><del>Pinka Akhirunnisyah</del> <span style='color: #ef4444; font-size: 0.75rem; font-weight: 600; margin-left: 8px;'>(Mundur)</span></td>
                             <td style="font-size: 0.85rem; color: var(--text-muted);">Smpn 3 Sungai Menang</td>
                             <td>AB</td>
                             <td><span class="badge-sma">SMA</span></td>
@@ -786,9 +786,9 @@
         new Chart(ctxJenjang, {
             type: 'doughnut',
             data: {
-                labels: ["SMA", "SMP"],
+                labels: ["SMP", "SMA"],
                 datasets: [{
-                    data: [7, 21],
+                    data: [21, 5],
                     backgroundColor: ['#4338ca', '#be185d'],
                     borderWidth: 0,
                     hoverOffset: 4
@@ -812,7 +812,7 @@
                 labels: ["Lampung", "Sumatera Selatan", "Banten"],
                 datasets: [{
                     label: 'Jumlah Pendaftar',
-                    data: [22, 5, 1],
+                    data: [22, 3, 1],
                     backgroundColor: '#3b82f6',
                     borderRadius: 6,
                     barThickness: 30
